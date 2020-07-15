@@ -11,18 +11,22 @@ purchases = [
     ( 'GE', 200, '1-jul-1998', 56 )
 ]
 
-# for i in purchases:
-#     print(i)
-#     for (code, name) in stockDict.items():
-#         if i[0] == code:
-#             total = i[1] * i[3]
-#             print(f"I purchased {name} stock for ${total}.")
+for i in purchases:
+    for (code, name) in stockDict.items():
+        if i[0] == code:
+            total = i[1] * i[3]
+            formatted_total = "{:,}".format(total)
+            print(f"I purchased {name} stock for ${formatted_total}.")
+            print('')
 
-new_stock_dict = dict()
 
 for stock in stockDict:
+    stock_value = 0
+    print(f'------ {stock} ------')
     for purchase in purchases:
         if stock == purchase[0]:
-            entry = f"{purchase[1]} shares at ${purchase[3]} each on {purchase[2]}"
-            new_stock_dict[stock] = entry
-            print(new_stock_dict)
+            stock_value += (purchase[1] * purchase[3])
+            print(f"{purchase[1]} shares at ${purchase[3]} each on {purchase[2]}.")
+    formatted_stock_value = "{:,}".format(stock_value)
+    print(f'Total value of stock in portfolio: ${formatted_stock_value}.')
+    print('')
